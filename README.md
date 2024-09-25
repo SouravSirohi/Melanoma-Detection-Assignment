@@ -1,5 +1,5 @@
 # Project Name
-Melanoma Detection
+Melanoma Detection Problem
 
 To build a CNN based model which can accurately detect melanoma. Melanoma is a type of cancer that can be deadly if not detected early. It accounts for 75% of skin cancer deaths. A solution that can evaluate images and alert dermatologists about the presence of melanoma has the potential to reduce a lot of manual effort needed in diagnosis.
 
@@ -13,7 +13,6 @@ To build a CNN based model which can accurately detect melanoma. Melanoma is a t
 <!-- You can include any other section that is pertinent to your problem -->
 
 ## General Information
-- Provide general information about your project here.
 - What is the background of your project?
 	- Melanoma is a type of cancer that can be deadly if not detected early. It accounts for 75% of skin cancer deaths. A solution that can evaluate images and alert dermatologists about the presence of melanoma has the potential to reduce a lot of manual effort needed in diagnosis.
 - What is the business problem that your project is trying to solve?
@@ -21,29 +20,66 @@ To build a CNN based model which can accurately detect melanoma. Melanoma is a t
 - What is the dataset that is being used?
 	- - The dataset consists of 2357 images of malignant and benign oncological diseases, which were formed from the International Skin Imaging Collaboration (ISIC). All images were sorted according to the classification taken with ISIC, and all subsets were divided into the same number of images, with the exception of melanomas and moles, whose images are slightly dominant.
 
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+## Dataset
 
-## Conclusions
-- Conclusion 1 from the analysis
-- Conclusion 2 from the analysis
-- Conclusion 3 from the analysis
-- Conclusion 4 from the analysis
+The dataset consists of 2,357 images, each depicting different types of skin cancer. These images are grouped into 9 categories within both training and testing sets. Each folder corresponds to one of the 9 distinct skin cancer types.
 
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+## Model
 
+The model employed is a Convolutional Neural Network (CNN) specifically crafted to detect melanoma with a high degree of accuracy.
 
-## Technologies Used
-- library - version 1.0
-- library - version 2.0
-- library - version 3.0
+## Model Architecture
 
-<!-- As the libraries versions keep on changing, it is recommended to mention the version of library used in this project -->
+The CNN is structured as follows:
+- A **Rescaling layer** for normalizing pixel values to a range between 0 and 1.
+- Two **Conv2D layers**, each with 32 filters, a kernel size of 5, 'Same' padding, and 'relu' activation.
+- A **MaxPool2D layer** with a pooling size of (2,2).
+- Another **Conv2D layer** with 64 filters, kernel size of 5, 'Same' padding, and 'relu' activation.
+- A second **MaxPool2D layer** with a pool size of (2,2).
+- Another **Conv2D layer** with 64 filters, kernel size of 5, 'Same' padding, and 'relu' activation.
+- A final **MaxPool2D layer** with a pool size of (2,2).
+- A **Dropout layer** with a 0.25 dropout rate to prevent overfitting.
+- A **Flatten layer** to convert the 2D matrix into a vector.
+- A **Dense layer** with 9 units and a 'softmax' activation for classification.
 
-## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- References if any...
-- This project was based on [this tutorial](https://www.example.com).
+## Model Compilation
+
+The model is compiled with the following configuration:
+- **Optimizer**: Adam
+- **Loss Function**: Sparse Categorical Crossentropy
+- **Evaluation Metric**: Accuracy
+
+## Model Training
+
+The model is trained with these parameters:
+- **Batch Size**: 32
+- **Image Resolution**: 180x180 pixels
+- **Number of Epochs**: 50
+
+## Model Evaluation
+
+For evaluation, the model's performance is measured on the validation set using:
+- **Accuracy**
+- **Loss**
+## Analyzing Results
+
+The model shows signs of overfitting. Adding more layers, increasing the number of neurons, or incorporating additional dropout layers may help address this. Further hyperparameter tuning could also improve performance.
+
+## Class Rebalance
+
+To address class imbalance, the Augmentor library is used to generate additional images across the classes, ensuring a more balanced dataset.
+
+## Visualizing Class Rebalance
+
+Matplotlib is used to visualize the impact of the class rebalancing process.
+
+## Analyzing Class Rebalance
+
+After applying the Augmentor library, the model's accuracy on the training data improved, indicating a better representation across classes.
+
+## Conclusion
+
+This CNN model represents a strong foundation for detecting skin cancer. Nonetheless, overfitting needs to be managed, and further optimization could lead to better overall performance.
 
 
 ## Contact
